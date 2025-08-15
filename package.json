@@ -1,0 +1,42 @@
+{
+  "name": "sol-prediction-simple-bot",
+  "version": "1.0.0",
+  "description": "Automated Solana prediction betting bot with Telegram integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "claim": "npx ts-node src/claimAll.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/web3.js": "^1.98.2",
+    "@types/node": "^22.15.24",
+    "axios": "^1.9.0",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.5.0",
+    "node-cron": "^3.0.3",
+    "react-hot-toast": "^2.5.2",
+    "telegraf": "^4.16.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "keywords": [
+    "solana",
+    "prediction",
+    "bot",
+    "telegram",
+    "betting"
+  ],
+  "author": "",
+  "license": "MIT"
+}

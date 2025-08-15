@@ -1,0 +1,1336 @@
+{
+  "version": "0.1.0",
+  "name": "sol_predictor",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "adminMultisig",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "operatorMultisig",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "roundDuration",
+          "type": "u64"
+        },
+        {
+          "name": "minBetAmount",
+          "type": "u64"
+        },
+        {
+          "name": "treasuryFee",
+          "type": "u64"
+        },
+        {
+          "name": "lockDuration",
+          "type": "u64"
+        },
+        {
+          "name": "bufferSeconds",
+          "type": "u64"
+        },
+        {
+          "name": "executor",
+          "type": "publicKey"
+        },
+        {
+          "name": "adminSigners",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "name": "operatorSigners",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "name": "adminThreshold",
+          "type": "u8"
+        },
+        {
+          "name": "operatorThreshold",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "startGenesisRound",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "executor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "lockRound",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nextRound",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "executor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pythPrice",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "endAndStartRound",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "previousRound",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "currentRound",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "newRound",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "executor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pythPrice",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "placeBet",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "predictBull",
+          "type": "bool"
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claimPayout",
+      "accounts": [
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdrawTreasury",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "adminMultisig",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "recipient",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "updateConfig",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "multisig",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "roundDuration",
+          "type": "u64"
+        },
+        {
+          "name": "minBetAmount",
+          "type": "u64"
+        },
+        {
+          "name": "treasuryFee",
+          "type": "u64"
+        },
+        {
+          "name": "lockDuration",
+          "type": "u64"
+        },
+        {
+          "name": "isPaused",
+          "type": "bool"
+        },
+        {
+          "name": "bufferSeconds",
+          "type": "u64"
+        },
+        {
+          "name": "executor",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "updateMultisig",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "operatorMultisig",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "adminMultisig",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newSigners",
+          "type": {
+            "vec": "publicKey"
+          }
+        },
+        {
+          "name": "newThreshold",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "closeRound",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "executor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancelBet",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "operatorMultisig",
+            "type": "publicKey"
+          },
+          {
+            "name": "adminMultisig",
+            "type": "publicKey"
+          },
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "executor",
+            "type": "publicKey"
+          },
+          {
+            "name": "roundDuration",
+            "type": "u64"
+          },
+          {
+            "name": "minBetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "treasuryFee",
+            "type": "u64"
+          },
+          {
+            "name": "lockDuration",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawableAmount",
+            "type": "u64"
+          },
+          {
+            "name": "currentRound",
+            "type": "u64"
+          },
+          {
+            "name": "isPaused",
+            "type": "bool"
+          },
+          {
+            "name": "bufferSeconds",
+            "type": "u64"
+          },
+          {
+            "name": "genesisStarted",
+            "type": "bool"
+          },
+          {
+            "name": "genesisLocked",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Multisig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "signers",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "threshold",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Treasury",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Round",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "number",
+            "type": "u64"
+          },
+          {
+            "name": "startTime",
+            "type": "i64"
+          },
+          {
+            "name": "lockTime",
+            "type": "i64"
+          },
+          {
+            "name": "closeTime",
+            "type": "i64"
+          },
+          {
+            "name": "lockPrice",
+            "type": "u64"
+          },
+          {
+            "name": "endPrice",
+            "type": "u64"
+          },
+          {
+            "name": "isActive",
+            "type": "bool"
+          },
+          {
+            "name": "totalBullAmount",
+            "type": "u64"
+          },
+          {
+            "name": "totalBearAmount",
+            "type": "u64"
+          },
+          {
+            "name": "totalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "rewardBaseCalAmount",
+            "type": "u64"
+          },
+          {
+            "name": "rewardAmount",
+            "type": "u64"
+          },
+          {
+            "name": "totalBullCount",
+            "type": "u64"
+          },
+          {
+            "name": "totalBearCount",
+            "type": "u64"
+          },
+          {
+            "name": "claimedCount",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "bufferSeconds",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserBet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "roundNumber",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "predictBull",
+            "type": "bool"
+          },
+          {
+            "name": "claimed",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "BetPlaced",
+      "fields": [
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "amount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "prediction",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "OperatorUpdated",
+      "fields": [
+        {
+          "name": "admin",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "oldOperator",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "newOperator",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RewardsClaimed",
+      "fields": [
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "amount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "BetCanceled",
+      "fields": [
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "amount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "prediction",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RoundEnded",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "endPrice",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        },
+        {
+          "name": "status",
+          "type": "u8",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RoundStarted",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "startTime",
+          "type": "i64",
+          "index": false
+        },
+        {
+          "name": "lockTime",
+          "type": "i64",
+          "index": false
+        },
+        {
+          "name": "closeTime",
+          "type": "i64",
+          "index": false
+        },
+        {
+          "name": "bufferSeconds",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "ContractPaused",
+      "fields": [
+        {
+          "name": "isPaused",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "OraclePriceReceived",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "price",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RewardsCalculated",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "rewardBaseCalAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "rewardAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "treasuryAmount",
+          "type": "u64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "TreasuryWithdrawn",
+      "fields": [
+        {
+          "name": "multisig",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "recipient",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "amount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RoundLocked",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "price",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        },
+        {
+          "name": "status",
+          "type": "u8",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "ConfigUpdated",
+      "fields": [
+        {
+          "name": "multisig",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundDuration",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "minBetAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "treasuryFee",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "lockDuration",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "isPaused",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "bufferSeconds",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "executor",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "AuthoritiesUpdated",
+      "fields": [
+        {
+          "name": "oldAdmin",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "oldOperator",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "newAdmin",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "newOperator",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "ConfigInitialized",
+      "fields": [
+        {
+          "name": "admin",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "executor",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundDuration",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "minBetAmount",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "treasuryFee",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "lockDuration",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "bufferSeconds",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "MultisigUpdated",
+      "fields": [
+        {
+          "name": "multisig",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "newSigners",
+          "type": {
+            "vec": "publicKey"
+          },
+          "index": false
+        },
+        {
+          "name": "newThreshold",
+          "type": "u8",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "RoundClosed",
+      "fields": [
+        {
+          "name": "roundNumber",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access"
+    },
+    {
+      "code": 6001,
+      "name": "RoundNotActive",
+      "msg": "Round is not active"
+    },
+    {
+      "code": 6002,
+      "name": "RoundEnded",
+      "msg": "Round has ended"
+    },
+    {
+      "code": 6003,
+      "name": "RoundNotEnded",
+      "msg": "Round has not ended yet"
+    },
+    {
+      "code": 6004,
+      "name": "RoundNotClosed",
+      "msg": "Round has not closed yet"
+    },
+    {
+      "code": 6005,
+      "name": "RoundStillActive",
+      "msg": "Round is still active"
+    },
+    {
+      "code": 6006,
+      "name": "AlreadyClaimed",
+      "msg": "Already claimed"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidRound",
+      "msg": "Invalid round number"
+    },
+    {
+      "code": 6008,
+      "name": "MathOverflow",
+      "msg": "Math overflow occurred"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidPrice",
+      "msg": "Invalid price from oracle"
+    },
+    {
+      "code": 6010,
+      "name": "ContractPaused",
+      "msg": "Contract is paused"
+    },
+    {
+      "code": 6011,
+      "name": "ContractNotPaused",
+      "msg": "Contract is not paused"
+    },
+    {
+      "code": 6012,
+      "name": "BetBelowMinimum",
+      "msg": "Bet amount below minimum"
+    },
+    {
+      "code": 6013,
+      "name": "AlreadyBetInRound",
+      "msg": "User already bet in this round"
+    },
+    {
+      "code": 6014,
+      "name": "NoRewardsAvailable",
+      "msg": "No rewards available for this round"
+    },
+    {
+      "code": 6015,
+      "name": "GenesisRoundNotStarted",
+      "msg": "Genesis round not started"
+    },
+    {
+      "code": 6016,
+      "name": "GenesisRoundAlreadyStarted",
+      "msg": "Genesis round already started"
+    },
+    {
+      "code": 6017,
+      "name": "GenesisRoundAlreadyLocked",
+      "msg": "Genesis round already locked"
+    },
+    {
+      "code": 6018,
+      "name": "GenesisRoundNotLocked",
+      "msg": "Genesis round not locked"
+    },
+    {
+      "code": 6019,
+      "name": "NotCurrentRound",
+      "msg": "Not the current round"
+    },
+    {
+      "code": 6020,
+      "name": "InsufficientTreasuryFunds",
+      "msg": "Insufficient funds in treasury"
+    },
+    {
+      "code": 6021,
+      "name": "RoundLocked",
+      "msg": "Round is locked for betting"
+    },
+    {
+      "code": 6022,
+      "name": "InvalidLockDuration",
+      "msg": "Lock duration must be less than round duration"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidRoundDuration",
+      "msg": "Round duration must be greater than 0"
+    },
+    {
+      "code": 6024,
+      "name": "RoundAlreadyLocked",
+      "msg": "Round has already been locked"
+    },
+    {
+      "code": 6025,
+      "name": "RoundAlreadyStarted",
+      "msg": "Round has already been started"
+    },
+    {
+      "code": 6026,
+      "name": "RoundNotLockedYet",
+      "msg": "Round not ready to be locked yet"
+    },
+    {
+      "code": 6027,
+      "name": "RoundNotLocked",
+      "msg": "Round not ready to be locked yet"
+    },
+    {
+      "code": 6028,
+      "name": "BufferWindowExpired",
+      "msg": "Buffer window for locking has expired"
+    },
+    {
+      "code": 6029,
+      "name": "InvalidTreasuryFee",
+      "msg": "Invalid treasury fee, must be <= 10000 basis points"
+    },
+    {
+      "code": 6030,
+      "name": "InvalidMinBetAmount",
+      "msg": "Minimum bet amount must be greater than 0"
+    },
+    {
+      "code": 6031,
+      "name": "InvalidBufferSeconds",
+      "msg": "Buffer seconds must be greater than 0"
+    },
+    {
+      "code": 6032,
+      "name": "UnauthorizedOperator",
+      "msg": "Unauthorized operator"
+    },
+    {
+      "code": 6033,
+      "name": "InvalidAuthority",
+      "msg": "Invalid authority key"
+    },
+    {
+      "code": 6034,
+      "name": "UnauthorizedExecutor",
+      "msg": "Unauthorized executor"
+    },
+    {
+      "code": 6035,
+      "name": "InvalidMultisig",
+      "msg": "Invalid multisig"
+    },
+    {
+      "code": 6036,
+      "name": "NotEnoughSignatures",
+      "msg": "Not enough signatures"
+    },
+    {
+      "code": 6037,
+      "name": "InvalidThreshold",
+      "msg": "Invalid threshold"
+    },
+    {
+      "code": 6038,
+      "name": "InvalidSigners",
+      "msg": "Invalid signers"
+    },
+    {
+      "code": 6039,
+      "name": "TooManySigners",
+      "msg": "Too many signers"
+    },
+    {
+      "code": 6040,
+      "name": "RoundNotStarted",
+      "msg": "Round not started"
+    },
+    {
+      "code": 6041,
+      "name": "OracleNotCalled",
+      "msg": "Oracel not called"
+    },
+    {
+      "code": 6042,
+      "name": "UnabelToCancelBet",
+      "msg": "Unabel to cancel bet"
+    },
+    {
+      "code": 6043,
+      "name": "WrongRound",
+      "msg": "Wrong round"
+    },
+    {
+      "code": 6044,
+      "name": "RoundShouldLockInBufferSeconds",
+      "msg": "Round should lock in buffer seconds"
+    },
+    {
+      "code": 6045,
+      "name": "RoundShouldEndInBufferSeconds",
+      "msg": "Round should end in buffer seconds"
+    }
+  ],
+  "metadata": {
+    "address": "2qdQyZWdBkzAGs7Hv2tnxDDJhhQ8po4sENyHQwxy8Jtp"
+  }
+}
