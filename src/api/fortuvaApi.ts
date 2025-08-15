@@ -26,7 +26,7 @@ export class FortuvaApi {
 
   async getClaimableBets(wallet: string): Promise<BetResponse[]> {
     try {
-      const { data } = await this.client.get(`/user/claimable-bets/${wallet}`);
+      const { data } = await this.client.get(`/user/claimable-bet/${wallet}`);
       return data.data;
     }
     catch (err) {
