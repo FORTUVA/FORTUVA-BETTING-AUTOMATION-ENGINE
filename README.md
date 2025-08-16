@@ -3,6 +3,26 @@
 An open-source helper tool for **Fortuva Prediction** players on Solana.  
 This bot does **not** predict market direction — it simply places bets automatically in the direction you choose, so you can focus on your own strategy.
 
+## 🔐 Safe Private Key Handling
+
+### ⚠️ Security Disclaimer
+
+**IMPORTANT**: This bot runs locally on your computer. Your private key never leaves your device, and no external services collect or store it. However, always use a dedicated wallet with only the SOL you're willing to use for betting. Never use your primary wallet for automated tools.
+
+### 🛡️ Best Practices
+
+#### 1. Create a Dedicated Bot Wallet
+- **Generate a new Solana wallet** specifically for bot operations
+- **Never use your main wallet** or any wallet containing significant funds
+- **Fund it only** with the amount you're willing to risk for betting
+
+#### 2. Secure Private Key Storage
+- **Environment Variables**: Store your private key in a `.env` file (never commit this file)
+- **File Permissions**: Ensure `.env` file has restricted access (600 permissions on Unix systems)
+- **Backup Securely**: Keep a secure backup of your bot wallet's private key
+
+#### 3. Wallet Separation Strategy
+
 ##  Features
 
 ### Core Functionality
@@ -249,36 +269,3 @@ The bot implements a Martingale-like strategy:
 - Fetches claimable bets from API
 - Claims rewards for all winning bets
 - Logs claimed amounts and new balance
-
-## 🔐 Safe Private Key Handling
-
-### ⚠️ Security Disclaimer
-
-**IMPORTANT**: This bot runs locally on your computer. Your private key never leaves your device, and no external services collect or store it. However, always use a dedicated wallet with only the SOL you're willing to use for betting. Never use your primary wallet for automated tools.
-
-### 🛡️ Best Practices
-
-#### 1. Create a Dedicated Bot Wallet
-- **Generate a new Solana wallet** specifically for bot operations
-- **Never use your main wallet** or any wallet containing significant funds
-- **Fund it only** with the amount you're willing to risk for betting
-
-#### 2. Secure Private Key Storage
-- **Environment Variables**: Store your private key in a `.env` file (never commit this file)
-- **File Permissions**: Ensure `.env` file has restricted access (600 permissions on Unix systems)
-- **Backup Securely**: Keep a secure backup of your bot wallet's private key
-
-#### 3. Wallet Separation Strategy
-
-## 🌐 Network Configuration
-
-### Devnet (Default)
-RPC URL: Solana devnet endpoint
-
-### Mainnet Setup
-To switch to mainnet:
-
-Update `RPC_URL` in your `.env` file to a mainnet endpoint:
-   ```env
-   RPC_URL=https://api.mainnet-beta.solana.com
-   ```

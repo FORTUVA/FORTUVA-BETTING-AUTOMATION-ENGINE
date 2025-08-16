@@ -3,7 +3,7 @@ import { DIRECTION_TYPE, MODE_TYPE } from './types';
 dotenv.config();
 
 export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com";
-export const PROGRAM_ID = "2qdQyZWdBkzAGs7Hv2tnxDDJhhQ8po4sENyHQwxy8Jtp";
+export const PROGRAM_ID = "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK";
 export const API_URL = "https://botapi.fortuva.xyz";
 export const BET_TIME = 10; //SECONDS
 export const INTERVAL_TIME = 5; //SECONDS;
