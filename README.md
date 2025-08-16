@@ -116,8 +116,8 @@ This bot does **not** predict market direction — it simply places bets automat
 
 ```typescript
 // Network Configuration
-export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable
-export const PROGRAM_ID = "FGSAreCJxd7NVGiksgSyhT75AVQ5JUn7TMeyBYRtqsAW";
+export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
+export const PROGRAM_ID = "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK";
 export const API_URL = "https://api.fortuva.xyz";
 
 // Timing Configuration
@@ -269,3 +269,16 @@ The bot implements a Martingale-like strategy:
 - Fetches claimable bets from API
 - Claims rewards for all winning bets
 - Logs claimed amounts and new balance
+
+## 🌐 Network Configuration
+
+### Devnet (Default)
+RPC URL: Solana devnet endpoint
+
+### Mainnet Setup
+To switch to mainnet:
+
+Update `RPC_URL` in your `.env` file to a mainnet endpoint:
+   ```env
+   RPC_URL=https://api.mainnet-beta.solana.com
+```
