@@ -117,7 +117,7 @@ This bot does **not** predict market direction — it simply places bets automat
 ```typescript
 // Network Configuration
 export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
-export const PROGRAM_ID = "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK";
+export const PROGRAM_ID = "Nova9KSMwH13y451PwUERP7oE2ZvSiLrfDjnNgBzWv9";
 export const API_URL = "https://api.fortuva.xyz";
 
 // Timing Configuration
