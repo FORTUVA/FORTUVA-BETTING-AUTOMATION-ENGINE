@@ -136,6 +136,8 @@ export const ODD_MAX_BET_AMOUNT = 1;       // Maximum bet for odd rounds
 export const ODD_MULTIPLIER = 2;         // Multiplier for bet amount after failed bets. Set to 1 for consistent bet amounts (no increase after losses)
 export const ODD_MODE: MODE_TYPE = "PAYOUT"; // Betting mode GENERAL| PAYOUT
 export const ODD_DIRECTION: DIRECTION_TYPE = "UP"; // When MODE_TYPE is "PAYOUT", 'UP' means bet in the direction which its payout is bigger
+
+export const CONSIDERING_OLD_BETS = false; // Determines bet amount calculation strategy: true includes historical wallet bets, false starts fresh from current round
 ```
 
 ### Betting Modes
