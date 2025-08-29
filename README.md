@@ -29,6 +29,8 @@ This bot does **not** predict market direction — it simply places bets automat
 - **Automated Betting**: Places bets automatically on prediction rounds with configurable strategies
 - **Smart Betting Logic**: Implements different strategies for odd/even rounds with dynamic bet amounts
 - **Automatic Reward Claiming**: Automatically claims rewards from winning bets
+- **Bet Cancellation**: Automatically cancels bets that are eligible for cancellation (e.g., when rounds are cancelled)
+- **Bet Closing**: Automatically closes completed bets to free up account space
 - **Interactive Controls**: Real-time manual betting control via keyboard input
 - **Real-time Bet Status**: Users can monitor their bets in real-time by connecting the bot wallet to Fortuva App (https://app.fortuva.xyz)
 - **Dynamic Betting Strategy**: Implements Martingale-like progression with configurable multipliers
@@ -193,6 +195,50 @@ npm run claim
 npx ts-node src/claimAll.ts
 ```
 
+### Automatic Bet Management
+
+The bot includes comprehensive bet management features that run automatically every 60 seconds:
+
+#### Bet Cancellation
+- **Automatic Detection**: Fetches cancelable bets from the Fortuva API
+- **Refund Processing**: Cancels eligible bets and processes refunds to your wallet
+- **Balance Tracking**: Monitors balance changes to confirm refund amounts
+- **Logging**: Detailed logs with transaction signatures and refund amounts
+
+#### Bet Closing
+- **Account Cleanup**: Automatically closes completed bets to free up account space
+- **Gas Optimization**: Reduces storage costs by cleaning up old bet accounts
+- **Transaction Logging**: Logs all close operations with transaction signatures
+
+#### Reward Claiming
+- **Winning Bet Detection**: Identifies all winning bets eligible for claiming
+- **Automatic Payout**: Claims rewards for all winning bets automatically
+- **Balance Updates**: Tracks balance increases from claimed rewards
+- **Comprehensive Logging**: Logs all claim operations with amounts and signatures
+
+### Bet Management Workflow
+
+1. **Every 60 seconds**, the bot automatically:
+   - Claims rewards from winning bets
+   - Cancels eligible bets and processes refunds
+   - Closes completed bets to free account space
+
+2. **API Integration**: Uses Fortuva's API to:
+   - Fetch claimable bets (`/user/claimable-bet/{wallet}`)
+   - Fetch cancelable bets (`/user/cancelable-bets/{wallet}`)
+   - Fetch closeable bets (`/user/closesable-bets/{wallet}`)
+
+3. **Transaction Processing**: Each operation:
+   - Creates and signs the appropriate Solana transaction
+   - Submits to the blockchain with proper error handling
+   - Confirms transaction success
+   - Logs results with transaction signatures
+
+4. **Error Handling**: Robust error handling ensures:
+   - Failed operations don't stop the bot
+   - Individual bet failures are logged but don't affect other operations
+   - Network issues are handled gracefully
+
 ## 🔧 Project Structure
 
 ```
@@ -271,6 +317,50 @@ The bot implements a Martingale-like strategy:
 - Fetches claimable bets from API
 - Claims rewards for all winning bets
 - Logs claimed amounts and new balance
+
+### Automatic Bet Management
+
+The bot includes comprehensive bet management features that run automatically every 60 seconds:
+
+#### Bet Cancellation
+- **Automatic Detection**: Fetches cancelable bets from the Fortuva API
+- **Refund Processing**: Cancels eligible bets and processes refunds to your wallet
+- **Balance Tracking**: Monitors balance changes to confirm refund amounts
+- **Logging**: Detailed logs with transaction signatures and refund amounts
+
+#### Bet Closing
+- **Account Cleanup**: Automatically closes completed bets to free up account space
+- **Gas Optimization**: Reduces storage costs by cleaning up old bet accounts
+- **Transaction Logging**: Logs all close operations with transaction signatures
+
+#### Reward Claiming
+- **Winning Bet Detection**: Identifies all winning bets eligible for claiming
+- **Automatic Payout**: Claims rewards for all winning bets automatically
+- **Balance Updates**: Tracks balance increases from claimed rewards
+- **Comprehensive Logging**: Logs all claim operations with amounts and signatures
+
+### Bet Management Workflow
+
+1. **Every 60 seconds**, the bot automatically:
+   - Claims rewards from winning bets
+   - Cancels eligible bets and processes refunds
+   - Closes completed bets to free account space
+
+2. **API Integration**: Uses Fortuva's API to:
+   - Fetch claimable bets (`/user/claimable-bet/{wallet}`)
+   - Fetch cancelable bets (`/user/cancelable-bets/{wallet}`)
+   - Fetch closeable bets (`/user/closesable-bets/{wallet}`)
+
+3. **Transaction Processing**: Each operation:
+   - Creates and signs the appropriate Solana transaction
+   - Submits to the blockchain with proper error handling
+   - Confirms transaction success
+   - Logs results with transaction signatures
+
+4. **Error Handling**: Robust error handling ensures:
+   - Failed operations don't stop the bot
+   - Individual bet failures are logged but don't affect other operations
+   - Network issues are handled gracefully
 
 ## 🌐 Network Configuration
 

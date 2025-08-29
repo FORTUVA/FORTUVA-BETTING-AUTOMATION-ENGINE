@@ -30,3 +30,18 @@ export interface ClaimResult {
   rewardAmount: number;
   roundNumber: number;
 }
+
+export interface CancelResult {
+  success: boolean;
+  signature?: string;
+  error?: string;
+  refundAmount: number;
+  roundNumber: number;
+}
+
+export interface CloseResult {
+  success: boolean;
+  signature?: string;
+  error?: string;
+  roundNumber: number;
+}

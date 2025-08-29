@@ -5,7 +5,7 @@ dotenv.config();
 // Network Configuration
 export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
 export const PROGRAM_ID = "9LJu14Y1jQvCKB7zuFuwfBw2UUTYU12nckKRhaRLdwS5";
-export const API_URL = "https://botapi.fortuva.xyz";
+export const API_URL = "https://automation-bot-backend.onrender.com/"; //https://botapi.fortuva.xyz
 
 // Timing Configuration
 export const BET_TIME = 10; // Seconds before round lock to place bet

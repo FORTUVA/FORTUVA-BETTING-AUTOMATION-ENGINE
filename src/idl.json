@@ -440,6 +440,37 @@
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "closeBet",
+      "accounts": [
+        {
+          "name": "userBet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "round",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "roundNumber",
+          "type": "u64"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -756,6 +787,26 @@
         {
           "name": "prediction",
           "type": "bool",
+          "index": false
+        },
+        {
+          "name": "timestamp",
+          "type": "i64",
+          "index": false
+        }
+      ]
+    },
+    {
+      "name": "BetClosed",
+      "fields": [
+        {
+          "name": "user",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "roundNumber",
+          "type": "u64",
           "index": false
         },
         {
@@ -1328,9 +1379,11 @@
       "code": 6045,
       "name": "RoundShouldEndInBufferSeconds",
       "msg": "Round should end in buffer seconds"
+    },
+    {
+      "code": 6046,
+      "name": "UnabledToCloseBet",
+      "msg": "Unabled to close bet"
     }
-  ],
-  "metadata": {
-    "address": "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK"
-  }
+  ]
 }

@@ -1,10 +1,9 @@
-import { Connection, Keypair, PublicKey, Transaction } from '@solana/web3.js';
+import { Connection, Keypair, Transaction } from '@solana/web3.js';
 import * as anchor from '@project-serum/anchor';
 import { Logger } from './Logger';
 import { ClaimResult } from '../types/BettingTypes';
 import { claimPayout, getBalance, getFormattedDateTime } from '../utils';
 import { getClaimableBets } from '../api';
-import { PROGRAM_ID } from '../config';
 
 export class ClaimService {
   constructor(

@@ -224,3 +224,112 @@ export const claimPayout = async (
     return null;
   }
 }
+
+export const cancelBet = async (
+  connection: Connection,
+  programId: PublicKey,
+  userPubkey: PublicKey,
+  signTransaction: (transaction: Transaction) => Promise<Transaction>,
+  roundId: number
+): Promise<string | null> => {
+  try {
+    const configPda = getConfigPda(programId);
+    const treasuryPda = getTreasuryPda(programId);
+
+    const provider = new anchor.AnchorProvider(
+      connection,
+      { publicKey: userPubkey, signTransaction } as any,
+      { commitment: "confirmed" }
+    );
+
+    const program = new anchor.Program(idl as any, programId, provider);
+
+    const roundPda = getRoundPda(roundId, programId);
+    const userBetPda = getUserBetPda(userPubkey, roundId, programId);
+
+    const tx = await program.methods
+      .cancelBet(new anchor.BN(roundId))
+      .accounts({
+        config: configPda,
+        round: roundPda,
+        userBet: userBetPda,
+        user: userPubkey,
+        treasury: treasuryPda,
+      })
+      .transaction();
+
+    const { blockhash } = await connection.getLatestBlockhash();
+    tx.recentBlockhash = blockhash;
+    tx.feePayer = userPubkey;
+
+    const signedTx = await signTransaction(tx);
+    const signature = await connection.sendRawTransaction(
+      signedTx.serialize(),
+      {
+        preflightCommitment: "processed",
+      }
+    );
+
+    await connection.confirmTransaction(signature, "confirmed");
+
+    console.log("✅ Cancel bet successful. Tx Signature:", signature);
+    return signature;
+  } catch (error: any) {
+    console.error("❌ Error in cancelBet:", error);
+    if (error.logs) console.error("🔍 Anchor logs:\n", error.logs.join("\n"));
+    return null;
+  }
+}
+
+export const closeBet = async (
+  connection: Connection,
+  programId: PublicKey,
+  userPubkey: PublicKey,
+  signTransaction: (transaction: Transaction) => Promise<Transaction>,
+  roundId: number
+): Promise<string | null> => {
+  try {
+
+    const provider = new anchor.AnchorProvider(
+      connection,
+      { publicKey: userPubkey, signTransaction } as any,
+      { commitment: "confirmed" }
+    );
+
+    const program = new anchor.Program(idl as any, programId, provider);
+
+    const roundPda = getRoundPda(roundId, programId);
+    const userBetPda = getUserBetPda(userPubkey, roundId, programId);
+    
+    const tx = await program.methods
+      .closeBet(new anchor.BN(roundId))
+      .accounts({
+        userBet: userBetPda,
+        round: roundPda,
+        user: userPubkey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .transaction();
+
+    const { blockhash } = await connection.getLatestBlockhash();
+    tx.recentBlockhash = blockhash;
+    tx.feePayer = userPubkey;
+
+    const signedTx = await signTransaction(tx);
+    const signature = await connection.sendRawTransaction(
+      signedTx.serialize(),
+      {
+        preflightCommitment: "processed",
+      }
+    );
+
+    await connection.confirmTransaction(signature, "confirmed");
+
+    console.log("✅ Close bet successful. Tx Signature:", signature);
+    return signature;
+  } catch (error: any) {
+    console.error("❌ Error in closeBet:", error);
+    if (error.logs) console.error("🔍 Anchor logs:\n", error.logs.join("\n"));
+    return null;
+  }
+}

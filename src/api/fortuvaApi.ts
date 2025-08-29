@@ -34,6 +34,26 @@ export class FortuvaApi {
     }
   }
 
+  async getCancelableBets(wallet: string): Promise<BetResponse[]> {
+    try {
+      const { data } = await this.client.get(`/user/cancelable-bets/${wallet}`);
+      return data.data;
+    }
+    catch (err) {
+      return []
+    }
+  }
+
+  async getClosesableBets(wallet: string): Promise<BetResponse[]> {
+    try {
+      const { data } = await this.client.get(`/user/closeable-bets/${wallet}`);
+      return data.data;
+    }
+    catch (err) {
+      return []
+    }
+  }
+
   async getRoundInfo(roundNumber: number): Promise<RoundResponse | null> {
     try {
       const { data } = await this.client.get(`/round/${roundNumber}`);
@@ -55,6 +75,14 @@ export const getFailedBetCount = (wallet: string, roundNumber: number, startRoun
 
 export const getClaimableBets = (wallet: string): Promise<BetResponse[]> => {
   return fortuvaApi.getClaimableBets(wallet);
+};
+
+export const getCancelableBets = (wallet: string): Promise<BetResponse[]> => {
+  return fortuvaApi.getCancelableBets(wallet);
+};
+
+export const getClosesableBets = (wallet: string): Promise<BetResponse[]> => {
+  return fortuvaApi.getClosesableBets(wallet);
 };
 
 export const getRoundInfo = (roundNumber: number): Promise<RoundResponse | null> => {

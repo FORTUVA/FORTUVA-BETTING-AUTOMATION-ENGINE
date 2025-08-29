@@ -15,6 +15,8 @@ import {
   CONSIDERING_OLD_BETS
 } from '../config';
 import idl from '../idl.json';
+import { CancelService } from '../services/CancelService';
+import { CloseService } from '../services/CloseService';
 
 export class FortuvaBot {
   private logger: Logger;
@@ -25,6 +27,8 @@ export class FortuvaBot {
   private signTransaction: (tx: Transaction) => Promise<Transaction>;
   private bettingService: BettingService;
   private claimService: ClaimService;
+  private cancelService: CancelService;
+  private closeService: CloseService;
   private userInputService: UserInputService;
   private inputHandler: InputHandler;
 
@@ -65,6 +69,22 @@ export class FortuvaBot {
     );
     
     this.claimService = new ClaimService(
+      this.logger,
+      this.wallet,
+      this.connection,
+      this.program,
+      this.signTransaction
+    );
+
+    this.cancelService = new CancelService(
+      this.logger,
+      this.wallet,
+      this.connection,
+      this.program,
+      this.signTransaction
+    );
+    
+    this.closeService = new CloseService(
       this.logger,
       this.wallet,
       this.connection,
@@ -117,6 +137,8 @@ export class FortuvaBot {
     setInterval(async () => {
       try {
         await this.claimService.claimAllRewards();
+        await this.cancelService.cancelAllBets();
+        await this.closeService.closeAllBets();
       } catch (error) {
         this.logger.error(`Error in claiming loop: ${error}`, 'FortuvaBot');
       }
