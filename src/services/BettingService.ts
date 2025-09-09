@@ -222,7 +222,7 @@ export class BettingService {
       currentRound, 
       this.runtimeConfig.startCalcRounds[currentRound % 2]
     );
-    
+    console.log({currentRound, start: this.runtimeConfig.startCalcRounds[currentRound % 2], failedCount});
     const baseAmount = this.runtimeConfig.betAmounts[currentRound % 2] > 0 
       ? this.runtimeConfig.betAmounts[currentRound % 2] 
       : strategy.minBetAmount;

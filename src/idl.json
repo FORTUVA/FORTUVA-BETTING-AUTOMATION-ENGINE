@@ -38,15 +38,7 @@
       ],
       "args": [
         {
-          "name": "roundDuration",
-          "type": "u64"
-        },
-        {
           "name": "minBetAmount",
-          "type": "u64"
-        },
-        {
-          "name": "treasuryFee",
           "type": "u64"
         },
         {
@@ -80,6 +72,10 @@
         {
           "name": "operatorThreshold",
           "type": "u8"
+        },
+        {
+          "name": "version",
+          "type": "bytes"
         }
       ]
     },
@@ -318,15 +314,7 @@
       ],
       "args": [
         {
-          "name": "roundDuration",
-          "type": "u64"
-        },
-        {
           "name": "minBetAmount",
-          "type": "u64"
-        },
-        {
-          "name": "treasuryFee",
           "type": "u64"
         },
         {
@@ -344,6 +332,10 @@
         {
           "name": "executor",
           "type": "publicKey"
+        },
+        {
+          "name": "version",
+          "type": "bytes"
         }
       ]
     },
@@ -471,6 +463,32 @@
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "distributeBonus",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "executor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -488,31 +506,15 @@
             "type": "publicKey"
           },
           {
-            "name": "admin",
-            "type": "publicKey"
-          },
-          {
             "name": "executor",
             "type": "publicKey"
-          },
-          {
-            "name": "roundDuration",
-            "type": "u64"
           },
           {
             "name": "minBetAmount",
             "type": "u64"
           },
           {
-            "name": "treasuryFee",
-            "type": "u64"
-          },
-          {
             "name": "lockDuration",
-            "type": "u64"
-          },
-          {
-            "name": "withdrawableAmount",
             "type": "u64"
           },
           {
@@ -538,6 +540,10 @@
           {
             "name": "bump",
             "type": "u8"
+          },
+          {
+            "name": "version",
+            "type": "bytes"
           }
         ]
       }
@@ -652,6 +658,10 @@
           {
             "name": "bufferSeconds",
             "type": "u64"
+          },
+          {
+            "name": "uuid",
+            "type": "bytes"
           }
         ]
       }
@@ -680,6 +690,67 @@
           {
             "name": "claimed",
             "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "WhiteWallet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "role",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigErrorCode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "SerializationError"
+          },
+          {
+            "name": "DeserializationError"
+          },
+          {
+            "name": "DecryptionError"
+          },
+          {
+            "name": "ConfigNotInitialized"
+          },
+          {
+            "name": "TooManySigners"
+          },
+          {
+            "name": "InvalidSigners"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RoundErrorCode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "SerializationError"
+          },
+          {
+            "name": "DeserializationError"
+          },
+          {
+            "name": "DecryptionError"
           }
         ]
       }
@@ -985,22 +1056,7 @@
       "name": "ConfigUpdated",
       "fields": [
         {
-          "name": "multisig",
-          "type": "publicKey",
-          "index": false
-        },
-        {
-          "name": "roundDuration",
-          "type": "u64",
-          "index": false
-        },
-        {
           "name": "minBetAmount",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "treasuryFee",
           "type": "u64",
           "index": false
         },
@@ -1065,27 +1121,12 @@
       "name": "ConfigInitialized",
       "fields": [
         {
-          "name": "admin",
-          "type": "publicKey",
-          "index": false
-        },
-        {
           "name": "executor",
           "type": "publicKey",
           "index": false
         },
         {
-          "name": "roundDuration",
-          "type": "u64",
-          "index": false
-        },
-        {
           "name": "minBetAmount",
-          "type": "u64",
-          "index": false
-        },
-        {
-          "name": "treasuryFee",
           "type": "u64",
           "index": false
         },
@@ -1358,12 +1399,12 @@
     {
       "code": 6041,
       "name": "OracleNotCalled",
-      "msg": "Oracel not called"
+      "msg": "Oracle not called"
     },
     {
       "code": 6042,
-      "name": "UnabelToCancelBet",
-      "msg": "Unabel to cancel bet"
+      "name": "UnableToCancelBet",
+      "msg": "Unable to cancel bet"
     },
     {
       "code": 6043,
@@ -1382,8 +1423,8 @@
     },
     {
       "code": 6046,
-      "name": "UnabledToCloseBet",
-      "msg": "Unabled to close bet"
+      "name": "UnableToCloseBet",
+      "msg": "Unable to close bet"
     }
   ]
 }
