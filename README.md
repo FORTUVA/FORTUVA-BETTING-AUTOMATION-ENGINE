@@ -1,25 +1,25 @@
-# Fortuva Automation Bot
+# FORTUVA-BETTING-AUTOMATION-ENGINE
 
 An open-source helper tool for **Fortuva Prediction** players on Solana.  
-This bot does **not** predict market direction — it simply places bets automatically in the direction you choose, so you can focus on your own strategy.
+This enginee does **not** predict market direction — it simply places bets automatically in the direction you choose, so you can focus on your own strategy.
 
 ## 🔐 Safe Private Key Handling
 
 ### ⚠️ Security Disclaimer
 
-**IMPORTANT**: This bot runs locally on your computer. Your private key never leaves your device, and no external services collect or store it. However, always use a dedicated wallet with only the SOL you're willing to use for betting. Never use your primary wallet for automated tools.
+**IMPORTANT**: This enginee runs locally on your computer. Your private key never leaves your device, and no external services collect or store it. However, always use a dedicated wallet with only the SOL you're willing to use for betting. Never use your primary wallet for automated tools.
 
 ### 🛡️ Best Practices
 
-#### 1. Create a Dedicated Bot Wallet
-- **Generate a new Solana wallet** specifically for bot operations
+#### 1. Create a Dedicated enginee Wallet
+- **Generate a new Solana wallet** specifically for enginee operations
 - **Never use your main wallet** or any wallet containing significant funds
 - **Fund it only** with the amount you're willing to risk for betting
 
 #### 2. Secure Private Key Storage
 - **Environment Variables**: Store your private key in a `.env` file (never commit this file)
 - **File Permissions**: Ensure `.env` file has restricted access (600 permissions on Unix systems)
-- **Backup Securely**: Keep a secure backup of your bot wallet's private key
+- **Backup Securely**: Keep a secure backup of your enginee wallet's private key
 
 #### 3. Wallet Separation Strategy
 
@@ -32,12 +32,12 @@ This bot does **not** predict market direction — it simply places bets automat
 - **Bet Cancellation**: Automatically cancels bets that are eligible for cancellation (e.g., when rounds are cancelled)
 - **Bet Closing**: Automatically closes completed bets to free up account space
 - **Interactive Controls**: Real-time manual betting control via keyboard input
-- **Real-time Bet Status**: Users can monitor their bets in real-time by connecting the bot wallet to Fortuva App (https://app.fortuva.xyz)
+- **Real-time Bet Status**: Users can monitor their bets in real-time by connecting the enginee wallet to Fortuva App (https://app.fortuva.xyz)
 - **Dynamic Betting Strategy**: Implements Martingale-like progression with configurable multipliers
 - **Round-based Logic**: Separate strategies for odd and even numbered rounds
 
 ### Advanced Features
-- **Multi-mode Betting**: Supports both "GENERAL" (fixed direction) and "PAYOUT" (dynamic based on pool distribution) modes
+- **Multi-mode Betting**: Supports engineeh "GENERAL" (fixed direction) and "PAYOUT" (dynamic based on pool distribution) modes
 - **Failed Bet Recovery**: Automatically increases bet amounts after consecutive losses
 - **Balance Monitoring**: Real-time balance tracking and insufficient funds warnings
 - **Transaction Monitoring**: Detailed transaction logging with Solana explorer links
@@ -52,7 +52,7 @@ This bot does **not** predict market direction — it simply places bets automat
 - **Interactive control** — change direction and bet size anytime
 
 ### Real-time Monitoring
-- **Live bet tracking** — monitor all bot activity through Fortuva App (https://app.fortuva.xyz)
+- **Live bet tracking** — monitor all enginee activity through Fortuva App (https://app.fortuva.xyz)
 - **Balance updates** — real-time wallet balance monitoring
 - **Transaction logging** — detailed logs with explorer links for verification
 
@@ -72,7 +72,7 @@ This bot does **not** predict market direction — it simply places bets automat
 
 ### Key Benefits
 - **24/7 operation** — Keep playing while you're away from your keyboard
-- **Strategy integration** — Run your own trading or market analysis scripts and connect them to the bot
+- **Strategy integration** — Run your own trading or market analysis scripts and connect them to the enginee
 - **FN token rewards** — Earn **FN tokens** on every bet, even if your prediction is wrong
 - **Reduced missed rounds** — Reduce missed rounds due to manual delays
 - **Consistent execution** — Eliminate human error and timing issues
@@ -80,7 +80,7 @@ This bot does **not** predict market direction — it simply places bets automat
 ### Competitive Advantages
 - **Automated efficiency** — Never miss optimal betting windows
 - **Strategy consistency** — Execute your strategy without emotional interference
-- **Multi-tasking** — Focus on analysis while bot handles execution
+- **Multi-tasking** — Focus on analysis while enginee handles execution
 
 ## 📋 Prerequisites
 
@@ -94,7 +94,7 @@ This bot does **not** predict market direction — it simply places bets automat
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd sol-prediction-simple-bot
+   cd sol-prediction-simple-enginee
    ```
 
 2. **Install dependencies**:
@@ -120,11 +120,11 @@ This bot does **not** predict market direction — it simply places bets automat
 // Network Configuration
 export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
 export const PROGRAM_ID = "2fW8rcHAShyHDSKdVwnLb3tuhXvxp3JUtxfAPKPgybiA";
-export const API_URL = "https://botapi.fortuva.xyz";
+export const API_URL = "https://engineeapi.fortuva.xyz";
 
 // Timing Configuration
 export const BET_TIME = 10; // Seconds before round lock to place bet
-export const INTERVAL_TIME = 5; // Seconds between bot checks
+export const INTERVAL_TIME = 5; // Seconds between enginee checks
 
 // Betting Strategy Configuration
 export const EVEN_MIN_BET_AMOUNT = 0.01; // Minimum bet for even rounds
@@ -151,12 +151,12 @@ export const CONSIDERING_OLD_BETS = false; // Determines bet amount calculation 
 
 ### Real-time Bet Monitoring
 
-**Important**: Users can connect their bot wallet to Fortuva App (https://app.fortuva.xyz) and they can see the real time bet status on the frontend in real time.
+**Important**: Users can connect their enginee wallet to Fortuva App (https://app.fortuva.xyz) and they can see the real time bet status on the frontend in real time.
 
-### Starting the Bot
+### Starting the enginee
 
 ```bash
-# Start the main bot
+# Start the main enginee
 npm start
 
 # Or run directly with ts-node
@@ -165,12 +165,12 @@ npx ts-node src/index.ts
 
 ### Interactive Controls
 
-While the bot is running, you can use keyboard controls:
+While the enginee is running, you can use keyboard controls:
 
 - **Press 'S' or 's'**: Enter manual betting mode
 - **Format**: `DIRECTION/AMOUNT` (e.g., `UP/0.01` or `DOWN/0.02`)
-- **Type 'exit'**: Exit the interactive input mode and return to bot mode
-- **Ctrl+C**: Exit the bot completely
+- **Type 'exit'**: Exit the interactive input mode and return to enginee mode
+- **Ctrl+C**: Exit the enginee completely
 
 ### Manual Betting Example
 
@@ -197,7 +197,7 @@ npx ts-node src/claimAll.ts
 
 ### Automatic Bet Management
 
-The bot includes comprehensive bet management features that run automatically every 60 seconds:
+The enginee includes comprehensive bet management features that run automatically every 60 seconds:
 
 #### Bet Cancellation
 - **Automatic Detection**: Fetches cancelable bets from the Fortuva API
@@ -218,7 +218,7 @@ The bot includes comprehensive bet management features that run automatically ev
 
 ### Bet Management Workflow
 
-1. **Every 60 seconds**, the bot automatically:
+1. **Every 60 seconds**, the enginee automatically:
    - Claims rewards from winning bets
    - Cancels eligible bets and processes refunds
    - Closes completed bets to free account space
@@ -235,14 +235,14 @@ The bot includes comprehensive bet management features that run automatically ev
    - Logs results with transaction signatures
 
 4. **Error Handling**: Robust error handling ensures:
-   - Failed operations don't stop the bot
+   - Failed operations don't stop the enginee
    - Individual bet failures are logged but don't affect other operations
    - Network issues are handled gracefully
 
 ## 🔧 Project Structure
 
 ```
-sol-prediction-simple-bot/
+sol-prediction-simple-enginee/
 ├── src/
 │   ├── api/
 │   │   ├── fortuvaApi.ts  # Fortuva API integration
@@ -252,7 +252,7 @@ sol-prediction-simple-bot/
 │   │   ├── index.ts       # Config exports
 │   │   └── types.ts       # Configuration types
 │   ├── core/
-│   │   └── FortuvaBot.ts  # Core bot implementation
+│   │   └── Fortuvaenginee.ts  # Core enginee implementation
 │   ├── services/
 │   │   ├── BettingService.ts    # Betting logic service
 │   │   ├── ClaimService.ts      # Claiming logic service
@@ -289,7 +289,7 @@ The updated folder structure now accurately reflects the current project organiz
 
 This structure shows a much more organized and maintainable codebase compared to the previous flat structure.
 
-## 🎯 Bot Logic
+## 🎯 enginee Logic
 
 ### Betting Strategy
 
@@ -306,7 +306,7 @@ This structure shows a much more organized and maintainable codebase compared to
 
 ### Failed Bet Recovery
 
-The bot implements a Martingale-like strategy:
+The enginee implements a Martingale-like strategy:
 - Tracks consecutive failed bets for each round type (odd/even)
 - Multiplies bet amount by configured multiplier after each loss
 - Resets to base amount after a win
@@ -320,7 +320,7 @@ The bot implements a Martingale-like strategy:
 
 ### Automatic Bet Management
 
-The bot includes comprehensive bet management features that run automatically every 60 seconds:
+The enginee includes comprehensive bet management features that run automatically every 60 seconds:
 
 #### Bet Cancellation
 - **Automatic Detection**: Fetches cancelable bets from the Fortuva API
@@ -341,7 +341,7 @@ The bot includes comprehensive bet management features that run automatically ev
 
 ### Bet Management Workflow
 
-1. **Every 60 seconds**, the bot automatically:
+1. **Every 60 seconds**, the enginee automatically:
    - Claims rewards from winning bets
    - Cancels eligible bets and processes refunds
    - Closes completed bets to free account space
@@ -358,7 +358,7 @@ The bot includes comprehensive bet management features that run automatically ev
    - Logs results with transaction signatures
 
 4. **Error Handling**: Robust error handling ensures:
-   - Failed operations don't stop the bot
+   - Failed operations don't stop the enginee
    - Individual bet failures are logged but don't affect other operations
    - Network issues are handled gracefully
 
