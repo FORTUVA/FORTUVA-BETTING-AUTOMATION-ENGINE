@@ -94,7 +94,7 @@ This engine does **not** predict market direction — it simply places bets auto
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd sol-prediction-simple-engine
+   cd FORTUVA-BETTING-AUTOMATION-ENGINE
    ```
 
 2. **Install dependencies**:
@@ -242,7 +242,7 @@ The engine includes comprehensive bet management features that run automatically
 ## 🔧 Project Structure
 
 ```
-sol-prediction-simple-engine/
+FORTUVA-BETTING-AUTOMATION-ENGINE/
 ├── src/
 │   ├── api/
 │   │   ├── fortuvaApi.ts  # Fortuva API integration
