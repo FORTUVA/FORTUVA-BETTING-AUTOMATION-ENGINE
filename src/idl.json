@@ -240,6 +240,11 @@
       "name": "claimPayout",
       "accounts": [
         {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "round",
           "isMut": true,
           "isSigner": false
