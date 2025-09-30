@@ -3,8 +3,8 @@ import { DIRECTION_TYPE, MODE_TYPE } from './types';
 dotenv.config();
 
 // Network Configuration
-export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
-export const PROGRAM_ID = "2fW8rcHAShyHDSKdVwnLb3tuhXvxp3JUtxfAPKPgybiA";
+export const RPC_URL = process.env.RPC_URL || "https://api.mainnet-beta.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
+export const PROGRAM_ID = "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK";
 export const API_URL = "https://botapi.fortuva.xyz";
 
 // Timing Configuration

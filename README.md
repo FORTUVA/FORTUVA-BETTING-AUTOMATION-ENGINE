@@ -118,12 +118,12 @@ This engine does **not** predict market direction — it simply places bets auto
 
 ```typescript
 // Network Configuration
-export const RPC_URL = process.env.RPC_URL || "https://api.devnet.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
-export const PROGRAM_ID = "2fW8rcHAShyHDSKdVwnLb3tuhXvxp3JUtxfAPKPgybiA";
+export const RPC_URL = process.env.RPC_URL || "https://api.mainnet-beta.solana.com"; // Now configurable via environment variable. Change to mainnet RPC (e.g., "https://api.mainnet-beta.solana.com") for production use
+export const PROGRAM_ID = "FTV1kbDLaeVM4LG4vHrVu2qdt2cXazYTXWWUi1xFAJdK";
 export const API_URL = "https://botapi.fortuva.xyz";
 
 // Timing Configuration
-export const BET_TIME = 10; // Seconds before round lock to place bet
+export const BET_TIME = 20; // Seconds before round lock to place bet
 export const INTERVAL_TIME = 5; // Seconds between engine checks
 
 // Betting Strategy Configuration
