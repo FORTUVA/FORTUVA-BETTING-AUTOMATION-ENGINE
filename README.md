@@ -108,8 +108,8 @@ This engine does **not** predict market direction — it simply places bets auto
    # Solana wallet private key (base58 encoded)
    PRIVATE_KEY=your_private_key_here
    
-   # Solana RPC URL (optional - defaults to devnet)
-   RPC_URL=https://api.devnet.solana.com
+   # Solana RPC URL
+   RPC_URL=https://api.mainnet-beta.solana.com
    ```
 
 ## ⚙️ Configuration
@@ -363,9 +363,6 @@ The engine includes comprehensive bet management features that run automatically
    - Network issues are handled gracefully
 
 ## 🌐 Network Configuration
-
-### Devnet (Default)
-RPC URL: Solana devnet endpoint
 
 ### Mainnet Setup
 To switch to mainnet:
